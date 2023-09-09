@@ -5,4 +5,8 @@ import com.example.productservice.models.Product;
 
 public interface ProductService {
     public GenericProductDto getProductById(long id);
+
+    public GenericProductDto createProduct(GenericProductDto product);
 }
+
+
