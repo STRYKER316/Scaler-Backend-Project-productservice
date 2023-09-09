@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.services.ProductService;
 
 
 @RestController
-@RequestMapping("/products/")
+@RequestMapping("/products")
 public class ProductController {
 
     private ProductService productService;
 
-
+    // Constructor
     public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
         this.productService = productService;
     }
@@ -30,14 +31,14 @@ public class ProductController {
     }
 
 
-    @GetMapping("{id}")
-    public String getProductById(@PathVariable("id") long id) {
+    @GetMapping("/{id}")
+    public GenericProductDto getProductById(@PathVariable("id") long id) {
         // return "Here is the product id: " + id;
         return productService.getProductById(id);
     }
 
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteProductById() {
 
     }
@@ -49,7 +50,7 @@ public class ProductController {
     }
 
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateProductById() {
 
     }

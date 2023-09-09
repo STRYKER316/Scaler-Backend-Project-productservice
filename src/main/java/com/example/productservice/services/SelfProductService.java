@@ -2,6 +2,7 @@ package com.example.productservice.services;
 
 import org.springframework.stereotype.Service;
 
+import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.models.Product;
 
 
@@ -9,7 +10,7 @@ import com.example.productservice.models.Product;
 public class SelfProductService implements ProductService{
 
     @Override
-    public String getProductById(long id) {
+    public GenericProductDto getProductById(long id) {
         return null;
     }
     
