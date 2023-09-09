@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/products/")
 public class ProductController {
-    @GetMapping("/")
+    @GetMapping
     public void getAllProducts() {
 
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public String getProductById(@PathVariable("id") long id) {
         return "Here is the product id: " + id;
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public void deleteProductById() {
 
     }
 
 
     @PostMapping
-    public void createProduct() {
-
+    public String createProduct() {
+        return "Created new product " + 1;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public void updateProductById() {
 
     }
