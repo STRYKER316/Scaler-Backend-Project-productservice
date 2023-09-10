@@ -1,5 +1,8 @@
 package com.example.productservice.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import com.example.productservice.models.Product;
 public class FakeStoreProductService implements ProductService {
 
     private RestTemplateBuilder restTemplateBuilder;
+    private String getAllProductsUrl = "https://fakestoreapi.com/products";
     private String getProductRequestUrl = "https://fakestoreapi.com/products/{id}";
     private String createProductRquestUrl = "https://fakestoreapi.com/products";
 
@@ -44,6 +48,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
 
+    @Override
     public GenericProductDto createProduct(GenericProductDto product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<GenericProductDto> response = restTemplate.postForEntity(
@@ -51,6 +56,32 @@ public class FakeStoreProductService implements ProductService {
         );
 
         return response.getBody();
+    }
+
+
+    @Override
+    public List<GenericProductDto> getAllProducts() {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto[]> response = restTemplate.getForEntity(getAllProductsUrl, FakeStoreProductDto[].class);
+
+        FakeStoreProductDto[] fakeStoreProductDtos = response.getBody();
+        List<GenericProductDto> products = new ArrayList<GenericProductDto>();
+
+        for (FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos) {
+            GenericProductDto product = new GenericProductDto();
+
+            product.setId(fakeStoreProductDto.getId());
+            product.setDescription(fakeStoreProductDto.getDescription());
+            product.setTitle(fakeStoreProductDto.getTitle());
+            product.setImage(fakeStoreProductDto.getImage());
+            product.setPrice(fakeStoreProductDto.getPrice());
+            product.setCategory(fakeStoreProductDto.getCategory());
+
+            products.add(product);
+        }
+        // System.out.println(fakeStoreProductDtos);
+
+        return products;
     }
     
 }
