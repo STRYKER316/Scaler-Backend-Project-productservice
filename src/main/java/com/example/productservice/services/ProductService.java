@@ -15,6 +15,8 @@ public interface ProductService {
     // public void deleteProductById(long id);
 
     public GenericProductDto deleteProductById(long id);
+
+    public GenericProductDto updateProductById(long id);
 }
 
 
