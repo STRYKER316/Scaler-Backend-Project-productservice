@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.NotFoundException;
-import com.example.productservice.models.Product;
 
 
 
@@ -112,8 +112,14 @@ public class FakeStoreProductService implements ProductService {
 
 
     @Override
-    public GenericProductDto updateProductById(long id) {
-        return null;
+    public GenericProductDto updateProductById(long id, GenericProductDto updatedProduct) {
+        HttpEntity<GenericProductDto> updatedProductEntity = new HttpEntity<GenericProductDto>(updatedProduct);
+
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto> response = restTemplate.exchange(productRequestUrlWithId, HttpMethod.PUT, updatedProductEntity, FakeStoreProductDto.class, id);
+
+        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+        return convertFakeStorDtoToGenericProductDto(fakeStoreProductDto);
     }
     
 }
