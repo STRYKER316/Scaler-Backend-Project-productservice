@@ -3,10 +3,11 @@ package com.example.productservice.services;
 import java.util.List;
 
 import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.exceptions.NotFoundException;
 import com.example.productservice.models.Product;
 
 public interface ProductService {
-    public GenericProductDto getProductById(long id);
+    public GenericProductDto getProductById(long id) throws NotFoundException;
 
     public GenericProductDto createProduct(GenericProductDto product);
 

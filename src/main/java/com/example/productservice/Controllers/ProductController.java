@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.productservice.dtos.ExceptionDto;
 import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.exceptions.NotFoundException;
 import com.example.productservice.services.ProductService;
 
 
@@ -29,6 +32,17 @@ public class ProductController {
         this.productService = productService;
     }
 
+    
+    @ExceptionHandler(NotFoundException.class)
+    private ResponseEntity<ExceptionDto> notFoundExceptionHandler(NotFoundException exception) {
+        // System.out.println("Not found exception occured.");
+        
+        return new ResponseEntity<ExceptionDto>(
+            new ExceptionDto(HttpStatus.NOT_FOUND, exception.getMessage()),
+            HttpStatus.NOT_FOUND
+        );
+    }
+
 
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
@@ -37,7 +51,7 @@ public class ProductController {
 
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") long id) {
+    public GenericProductDto getProductById(@PathVariable("id") long id) throws NotFoundException {
         // return "Here is the product id: " + id;
         return productService.getProductById(id);
     }
