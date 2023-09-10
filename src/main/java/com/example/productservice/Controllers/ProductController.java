@@ -33,17 +33,6 @@ public class ProductController {
     }
 
     
-    @ExceptionHandler(NotFoundException.class)
-    private ResponseEntity<ExceptionDto> notFoundExceptionHandler(NotFoundException exception) {
-        // System.out.println("Not found exception occured.");
-        
-        return new ResponseEntity<ExceptionDto>(
-            new ExceptionDto(HttpStatus.NOT_FOUND, exception.getMessage()),
-            HttpStatus.NOT_FOUND
-        );
-    }
-
-
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
         return productService.getAllProducts();
