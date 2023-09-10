@@ -3,6 +3,8 @@ package com.example.productservice.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,8 +50,13 @@ public class ProductController {
 
 
     @DeleteMapping("/{id}")
-    public GenericProductDto deleteProductById(@PathVariable("id") long id) {
-        return productService.deleteProductById(id);
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") long id) {
+        ResponseEntity<GenericProductDto> response = new ResponseEntity<GenericProductDto>(
+            productService.deleteProductById(id), HttpStatus.OK
+        );
+        return response;
+
+        // return productService.deleteProductById(id);
     }
 
 
