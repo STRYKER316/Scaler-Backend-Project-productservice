@@ -69,12 +69,14 @@ public class FakeStoreProductService implements ProductService {
         FakeStoreProductDto[] fakeStoreProductDtos = response.getBody();
         List<GenericProductDto> products = new ArrayList<GenericProductDto>();
 
-        for (FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos) {
+        if (fakeStoreProductDtos != null) {
+            for (FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos) {
             GenericProductDto product = convertFakeStorDtoToGenericProductDto(fakeStoreProductDto);
             products.add(product);
+            }
         }
+        
         // System.out.println(fakeStoreProductDtos);
-
         return products;
     }
 
