@@ -13,11 +13,10 @@ import org.springframework.web.client.RestTemplate;
 import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.NotFoundException;
-import com.example.productservice.thirdPartyClients.productService.ThirdPartyProductServiceClient;
 
 
 @Service
-public class FakeStoreProductServiceClient implements ThirdPartyProductServiceClient {
+public class FakeStoreProductServiceClient {
 
     private RestTemplateBuilder restTemplateBuilder;
     private String productsRequestBaseUrl = "https://fakestoreapi.com/products";
@@ -43,7 +42,6 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
 
-    @Override
     public GenericProductDto getProductById(long id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(productRequestUrlWithId, FakeStoreProductDto.class, id);
@@ -61,7 +59,6 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
 
-    @Override
     public List<GenericProductDto> getAllProducts() {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto[]> response = restTemplate.getForEntity(productsRequestBaseUrl, FakeStoreProductDto[].class);
@@ -81,7 +78,6 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
 
-    @Override
     public GenericProductDto createProduct(GenericProductDto product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
@@ -92,7 +88,6 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
 
-    @Override
     public GenericProductDto deleteProductById(long id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.exchange(productRequestUrlWithId, HttpMethod.DELETE, null, FakeStoreProductDto.class, id);
@@ -102,8 +97,7 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
         return convertFakeStorDtoToGenericProductDto(fakeStoreProductDto);
     }
 
-    
-    // @Override
+
     // public void deleteProductById(long id) {
     //     // System.out.println("Product with id: " + id + " is deleted");
 
@@ -113,7 +107,7 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     // }
 
 
-    @Override
+
     public GenericProductDto updateProductById(long id, GenericProductDto updatedProduct) {
         HttpEntity<GenericProductDto> updatedProductEntity = new HttpEntity<GenericProductDto>(updatedProduct);
 
