@@ -3,6 +3,7 @@ package com.example.productservice.thirdPartyClients.productService.fakeStore;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,8 +20,19 @@ import com.example.productservice.exceptions.NotFoundException;
 public class FakeStoreProductServiceClient {
 
     private RestTemplateBuilder restTemplateBuilder;
+
     private String productsRequestBaseUrl = "https://fakestoreapi.com/products";
     private String productRequestUrlWithId = "https://fakestoreapi.com/products/{id}";
+
+    // // application properties configuration
+    // @Value("${fakestore.api.url}")
+    // private String fakeStoreApiUrl;
+
+    // @Value("${fakestore.api.path.products}")
+    // private String fakeStoreProductApiPath;
+
+    // private String productsRequestBaseUrl = fakeStoreApiUrl + fakeStoreProductApiPath;
+    // private String productRequestUrlWithId = fakeStoreApiUrl + fakeStoreProductApiPath + "/{id}";
 
     // Constructor
     public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder) {
