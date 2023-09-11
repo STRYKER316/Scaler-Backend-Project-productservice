@@ -21,22 +21,19 @@ public class FakeStoreProductServiceClient {
 
     private RestTemplateBuilder restTemplateBuilder;
 
-    private String productsRequestBaseUrl = "https://fakestoreapi.com/products";
-    private String productRequestUrlWithId = "https://fakestoreapi.com/products/{id}";
+    // private String productsRequestBaseUrl = "https://fakestoreapi.com/products";
+    // private String productRequestUrlWithId = "https://fakestoreapi.com/products/{id}";
 
-    // // application properties configuration
-    // @Value("${fakestore.api.url}")
-    // private String fakeStoreApiUrl;
-
-    // @Value("${fakestore.api.path.products}")
-    // private String fakeStoreProductApiPath;
-
-    // private String productsRequestBaseUrl = fakeStoreApiUrl + fakeStoreProductApiPath;
-    // private String productRequestUrlWithId = fakeStoreApiUrl + fakeStoreProductApiPath + "/{id}";
+    private String productsRequestBaseUrl;
+    private String productRequestUrlWithId;
 
     // Constructor
-    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder) {
+    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder, 
+                                            @Value("${fakestore.api.url}") String fakeStoreApiUrl, 
+                                            @Value("${fakestore.api.path.products}") String fakeStoreProductApiPath) {
         this.restTemplateBuilder = restTemplateBuilder;
+        this.productsRequestBaseUrl = fakeStoreApiUrl + fakeStoreProductApiPath;
+        this.productRequestUrlWithId = fakeStoreApiUrl + fakeStoreProductApiPath + "/{id}";;
     }
 
 
