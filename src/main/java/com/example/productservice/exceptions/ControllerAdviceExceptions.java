@@ -12,7 +12,7 @@ public class ControllerAdviceExceptions {
     
     @ExceptionHandler(NotFoundException.class)
     private ResponseEntity<ExceptionDto> notFoundExceptionHandler(NotFoundException exception) {
-        // System.out.println("Not found exception occured.");
+        // System.out.println("Not found exception occurred.");
         
         return new ResponseEntity<ExceptionDto>(
             new ExceptionDto(HttpStatus.NOT_FOUND, exception.getMessage()),
