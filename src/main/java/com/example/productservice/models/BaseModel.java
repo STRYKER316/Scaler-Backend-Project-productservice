@@ -1,10 +1,12 @@
 package com.example.productservice.models;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @MappedSuperclass
 public class BaseModel {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 }
