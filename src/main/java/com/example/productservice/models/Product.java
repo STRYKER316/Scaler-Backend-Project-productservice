@@ -13,6 +13,7 @@ public class Product extends BaseModel {
     private String description;
     private String image;
     private double price;
+
 //    P : C => M : 1 relation
     @ManyToOne
     private Category category;
