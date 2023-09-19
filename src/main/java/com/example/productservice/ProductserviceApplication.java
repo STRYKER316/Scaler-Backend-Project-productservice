@@ -50,6 +50,11 @@ public class ProductserviceApplication implements CommandLineRunner {
 		product.setPrice(price);
 		productRepository.save(product);
 
+
+//		Delete call to check cascade
+		productRepository.deleteById(UUID.fromString("f09bd37e-ddfe-454c-b507-c79e97361ed6"));
+
+
 //		Category category1 = categoryRepository.findById(UUID.fromString("bdcbb858-70e7-4c17-9414-d03233aa6944")).get();
 //		System.out.println("Category name is: " + category1.getName());
 	}
