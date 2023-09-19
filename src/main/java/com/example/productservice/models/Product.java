@@ -1,6 +1,7 @@
 package com.example.productservice.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,6 @@ public class Product extends BaseModel {
 //    private double price;
 
     @ManyToOne
+    @JoinColumn(name = "category")
     private Category category;
 }

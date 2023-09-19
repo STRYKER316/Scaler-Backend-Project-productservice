@@ -33,20 +33,20 @@ public class ProductserviceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Category category = new Category();
-		category.setName("Apple Phone");
-		Category savedCategory = categoryRepository.save(category);
-
-		Price price = new Price();
-		Price savedPrice = priceRepository.save(price);
-
-
-		Product product = new Product();
-		product.setTitle("I-phone 15");
-		product.setDescription("I-phone...lol");
-		product.setCategory(savedCategory);
-		product.setPrice(savedPrice);
-		productRepository.save(product);
+//		Category category = new Category();
+//		category.setName("Apple Phone");
+//		Category savedCategory = categoryRepository.save(category);
+//
+//		Price price = new Price();
+//		Price savedPrice = priceRepository.save(price);
+//
+//
+//		Product product = new Product();
+//		product.setTitle("I-phone 15");
+//		product.setDescription("I-phone...lol");
+//		product.setCategory(savedCategory);
+//		product.setPrice(savedPrice);
+//		productRepository.save(product);
 
 //		Category category1 = categoryRepository.findById(UUID.fromString("bdcbb858-70e7-4c17-9414-d03233aa6944")).get();
 //		System.out.println("Category name is: " + category1.getName());
