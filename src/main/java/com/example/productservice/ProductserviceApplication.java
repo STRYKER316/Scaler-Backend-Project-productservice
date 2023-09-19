@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -33,26 +34,33 @@ public class ProductserviceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Category category = new Category();
-		category.setName("Apple Phone");
-//		Category savedCategory = categoryRepository.save(category);
+//		Category category = new Category();
+//		category.setName("Apple Phone");
+////		Category savedCategory = categoryRepository.save(category);
+//
+//		Price price = new Price("Rupee", 10);
+////		Price savedPrice = priceRepository.save(price);
+//
+//
+//		Product product = new Product();
+//		product.setTitle("I-phone 15");
+//		product.setDescription("I-phone...lol");
+////		product.setCategory(savedCategory);		// not needed as cascade is used on relation
+//		product.setCategory(category);
+////		product.setPrice(savedPrice);			// not needed as cascade is used on relation
+//		product.setPrice(price);
+//		productRepository.save(product);
+//
+//
+////		Delete call to check cascade
+//		productRepository.deleteById(UUID.fromString("f09bd37e-ddfe-454c-b507-c79e97361ed6"));
 
-		Price price = new Price("Rupee", 10);
-//		Price savedPrice = priceRepository.save(price);
+//		JPA query check
+		List<Product> products = productRepository.findAllByPrice_Currency("Rupee");
 
+		System.out.println(productRepository.countAllByPrice_Currency("Rupee"));
 
-		Product product = new Product();
-		product.setTitle("I-phone 15");
-		product.setDescription("I-phone...lol");
-//		product.setCategory(savedCategory);		// not needed as cascade is used on relation
-		product.setCategory(category);
-//		product.setPrice(savedPrice);			// not needed as cascade is used on relation
-		product.setPrice(price);
-		productRepository.save(product);
-
-
-//		Delete call to check cascade
-		productRepository.deleteById(UUID.fromString("f09bd37e-ddfe-454c-b507-c79e97361ed6"));
+		List<Product> products1 = productRepository.findAllByTitle("I-phone 15");
 
 
 //		Category category1 = categoryRepository.findById(UUID.fromString("bdcbb858-70e7-4c17-9414-d03233aa6944")).get();
