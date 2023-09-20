@@ -15,7 +15,7 @@ public interface DbProductService {
 
     // public void deleteProductById(long id);
 
-    public GenericDbProductDto deleteProductById(UUID id);
+    public void deleteProductById(UUID id);
 
     public GenericDbProductDto updateProductById(UUID id, GenericDbProductDto updatedProduct);
 }

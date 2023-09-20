@@ -80,8 +80,8 @@ public class SelfProductService implements DbProductService{
 
 
     @Override
-    public GenericDbProductDto deleteProductById(UUID id) {
-        return null;
+    public void deleteProductById(UUID id) {
+        productRepository.deleteById(id);
     }
 
 

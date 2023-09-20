@@ -97,10 +97,10 @@ public class ProductController {
     }
 
 
-    // @DeleteMapping("/{id}")
-    // public void deleteProductById(@PathVariable("id") long id) {
-    //     productService.deleteProductById(id);
-    // }
+     @DeleteMapping("/{id}")
+     public void deleteProductById(@PathVariable("id") UUID id) {
+         selfProductService.deleteProductById(id);
+     }
 
 
 //    @DeleteMapping("/{id}")
