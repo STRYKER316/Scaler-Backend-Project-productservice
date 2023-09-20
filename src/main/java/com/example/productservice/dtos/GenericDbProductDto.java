@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GenericProductDto {
-    private long id;
+public class GenericDbProductDto {
     private String title;
     private String description;
     private String image;

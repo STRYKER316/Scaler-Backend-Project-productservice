@@ -1,15 +1,13 @@
 package com.example.productservice.repositories;
 
 import com.example.productservice.models.Product;
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
@@ -27,4 +25,9 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     @Query(value = "select * from Product where title = :title", nativeQuery = true)
     List<Product> findAllByTitle(String title);
+
+
+    // SelfProductService Methods below
+    @Override
+    Optional<Product> findById(UUID uuid);
 }

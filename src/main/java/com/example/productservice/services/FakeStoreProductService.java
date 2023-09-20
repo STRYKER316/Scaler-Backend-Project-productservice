@@ -2,14 +2,12 @@ package com.example.productservice.services;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.dtos.GenericFakeStoreProductDto;
 import com.example.productservice.exceptions.NotFoundException;
 import com.example.productservice.thirdPartyClients.productService.fakeStore.FakeStoreProductServiceClient;
 
 
-@Primary
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
@@ -22,31 +20,31 @@ public class FakeStoreProductService implements ProductService {
 
 
     @Override
-    public GenericProductDto getProductById(long id) throws NotFoundException {
+    public GenericFakeStoreProductDto getProductById(long id) throws NotFoundException {
         return fakeStoreProductServiceClient.getProductById(id);
     }
 
 
     @Override
-    public List<GenericProductDto> getAllProducts() {
+    public List<GenericFakeStoreProductDto> getAllProducts() {
         return fakeStoreProductServiceClient.getAllProducts();
     }
 
 
     @Override
-    public GenericProductDto createProduct(GenericProductDto product) {
+    public GenericFakeStoreProductDto createProduct(GenericFakeStoreProductDto product) {
         return fakeStoreProductServiceClient.createProduct(product);
     }
 
 
     @Override
-    public GenericProductDto deleteProductById(long id) {
+    public GenericFakeStoreProductDto deleteProductById(long id) {
         return fakeStoreProductServiceClient.deleteProductById(id);
     }
 
 
     @Override
-    public GenericProductDto updateProductById(long id, GenericProductDto updatedProduct) {
+    public GenericFakeStoreProductDto updateProductById(long id, GenericFakeStoreProductDto updatedProduct) {
         return fakeStoreProductServiceClient.updateProductById(id, updatedProduct);
     }
     
