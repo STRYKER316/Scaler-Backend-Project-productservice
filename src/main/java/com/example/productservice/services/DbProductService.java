@@ -11,7 +11,7 @@ public interface DbProductService {
 
     public List<GenericDbProductDto> getAllProducts();
 
-    public GenericDbProductDto createProduct(GenericDbProductDto product);
+    public Boolean createProduct(GenericDbProductDto product);
 
     // public void deleteProductById(long id);
 

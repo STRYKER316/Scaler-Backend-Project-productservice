@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import com.example.productservice.dtos.GenericDbProductDto;
 import com.example.productservice.exceptions.NotFoundException;
+import com.example.productservice.models.Category;
+import com.example.productservice.models.Price;
 import com.example.productservice.models.Product;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
@@ -62,8 +64,18 @@ public class SelfProductService implements DbProductService{
 
 
     @Override
-    public GenericDbProductDto createProduct(GenericDbProductDto product) {
-        return null;
+    public Boolean createProduct(GenericDbProductDto product) {
+        Product newProduct = new Product();
+        newProduct.setTitle(product.getTitle());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setImage(product.getImage());
+        newProduct.setCategory(new Category(product.getCategory()));
+        newProduct.setPrice(new Price("Rupee", product.getPrice()));
+
+        if (productRepository.save(newProduct) == null) {
+            return false;
+        }
+        return true;
     }
 
 

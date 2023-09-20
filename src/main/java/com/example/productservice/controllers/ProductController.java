@@ -5,10 +5,7 @@ import java.util.UUID;
 
 import com.example.productservice.dtos.GenericDbProductDto;
 import com.example.productservice.services.SelfProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.productservice.dtos.GenericFakeStoreProductDto;
 import com.example.productservice.exceptions.NotFoundException;
@@ -93,6 +90,13 @@ public class ProductController {
     }
 
 
+    @PostMapping
+    public Boolean createProduct(@RequestBody GenericDbProductDto product) {
+         System.out.println(product.getTitle());
+        return selfProductService.createProduct(product);
+    }
+
+
     // @DeleteMapping("/{id}")
     // public void deleteProductById(@PathVariable("id") long id) {
     //     productService.deleteProductById(id);
@@ -107,13 +111,6 @@ public class ProductController {
 //        return response;
 //
 //        // return productService.deleteProductById(id);
-//    }
-//
-//
-//    @PostMapping
-//    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
-//        // System.out.println(product.getTitle());
-//        return selfProductService.createProduct(product);
 //    }
 //
 //

@@ -15,6 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category extends BaseModel {
+    public Category(String name) {
+        this.name = name;
+    }
+
     private String name;
     @OneToMany(mappedBy = "category")
     private List<Product> products;
