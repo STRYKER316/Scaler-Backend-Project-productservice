@@ -80,16 +80,16 @@ public class ProductController {
     }
 
 
-    @GetMapping
-    public List<GenericDbProductDto> getAllProducts() {
-        return selfProductService.getAllProducts();
-    }
-
-
     @GetMapping("/{id}")
     public GenericDbProductDto getProductById(@PathVariable("id") UUID id) throws NotFoundException {
 //        System.out.println("The id is: " + id);
         return selfProductService.getProductById(id);
+    }
+
+
+    @GetMapping
+    public List<GenericDbProductDto> getAllProducts() {
+        return selfProductService.getAllProducts();
     }
 
 

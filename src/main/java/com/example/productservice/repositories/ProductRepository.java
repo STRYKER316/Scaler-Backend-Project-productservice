@@ -30,4 +30,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     // SelfProductService Methods below
     @Override
     Optional<Product> findById(UUID uuid);
+
+    @Override
+    List<Product> findAll();
 }
