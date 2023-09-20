@@ -87,6 +87,14 @@ public class SelfProductService implements DbProductService{
 
     @Override
     public GenericDbProductDto updateProductById(UUID id, GenericDbProductDto updatedProduct) {
-        return null;
+        Optional<Product> dbProduct = productRepository.findById(id);
+        Product productToUpdate = dbProduct.get();
+
+        productToUpdate.setTitle(updatedProduct.getTitle());
+        productToUpdate.setDescription(updatedProduct.getDescription());
+        productToUpdate.setImage(updatedProduct.getImage());
+        productRepository.save(productToUpdate);
+
+        return convertProductToGenericDbProductDto(productToUpdate);
     }
 }

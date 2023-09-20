@@ -62,7 +62,8 @@ public class ProductController {
 //
 //
 //    @PutMapping("/{id}")
-//    public GenericProductDto updateProductById(@PathVariable("id") long id, @RequestBody GenericProductDto updatedProduct) {
+//    public GenericProductDto updateProductById(@PathVariable("id") long id,
+//                                               @RequestBody GenericProductDto updatedProduct) {
 //        return productService.updateProductById(id, updatedProduct);
 //    }
 
@@ -112,11 +113,11 @@ public class ProductController {
 //
 //        // return productService.deleteProductById(id);
 //    }
-//
-//
-//    @PutMapping("/{id}")
-//    public GenericProductDto updateProductById(@PathVariable("id") long id, @RequestBody GenericProductDto updatedProduct) {
-//        return selfProductService.updateProductById(id, updatedProduct);
-//    }
 
+
+    @PutMapping("/{id}")
+    public GenericDbProductDto updateProductById(@PathVariable("id") UUID id,
+                                                 @RequestBody GenericDbProductDto updatedProduct) {
+        return selfProductService.updateProductById(id, updatedProduct);
+    }
 }

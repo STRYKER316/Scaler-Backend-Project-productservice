@@ -27,7 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     List<Product> findAllByTitle(String title);
 
 
-    // SelfProductService Methods below
+    // ------------------------------ SelfProductService Methods below ------------------------------
     @Override
     Optional<Product> findById(UUID uuid);
 
@@ -36,4 +36,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     @Override
     void deleteById(UUID uuid);
+
+
 }
