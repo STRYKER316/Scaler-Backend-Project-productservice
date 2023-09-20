@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.productservice.dtos.GenericDbProductDto;
+import com.example.productservice.dtos.DbProductDto;
 import com.example.productservice.exceptions.NotFoundException;
 import com.example.productservice.models.Category;
 import com.example.productservice.models.Price;
@@ -17,17 +17,17 @@ import org.springframework.stereotype.Service;
 
 @Primary
 @Service("selfProductService")
-public class SelfProductService implements DbProductService{
+public class SelfDbProductService implements DbProductService{
 
     private ProductRepository productRepository;
 
-    public SelfProductService(ProductRepository productRepository) {
+    public SelfDbProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     // Helper Method
-    private GenericDbProductDto convertProductToGenericDbProductDto(Product product) {
-        GenericDbProductDto genericProductDto = new GenericDbProductDto();
+    private DbProductDto convertProductToDbProductDto(Product product) {
+        DbProductDto genericProductDto = new DbProductDto();
         genericProductDto.setTitle(product.getTitle());
         genericProductDto.setDescription(product.getDescription());
         genericProductDto.setImage(product.getImage());
@@ -40,10 +40,10 @@ public class SelfProductService implements DbProductService{
 
 //    ------------------------------ APIs ------------------------------
     @Override
-    public GenericDbProductDto getProductById(UUID id) throws NotFoundException {
+    public DbProductDto getProductById(UUID id) throws NotFoundException {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
-            return convertProductToGenericDbProductDto(product.get());
+            return convertProductToDbProductDto(product.get());
         } else {
             throw new NotFoundException("The product with id: " + id + " is not found");
         }
@@ -51,20 +51,20 @@ public class SelfProductService implements DbProductService{
 
 
     @Override
-    public List<GenericDbProductDto> getAllProducts() {
+    public List<DbProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        List<GenericDbProductDto> genericDbProductDtos = new ArrayList<>();
+        List<DbProductDto> dbProductDtos = new ArrayList<>();
 
         for (Product product : products) {
-            GenericDbProductDto genericDbProductDto = convertProductToGenericDbProductDto(product);
-            genericDbProductDtos.add(genericDbProductDto);
+            DbProductDto dbProductDto = convertProductToDbProductDto(product);
+            dbProductDtos.add(dbProductDto);
         }
-        return genericDbProductDtos;
+        return dbProductDtos;
     }
 
 
     @Override
-    public Boolean createProduct(GenericDbProductDto product) {
+    public Boolean createProduct(DbProductDto product) {
         Product newProduct = new Product();
         newProduct.setTitle(product.getTitle());
         newProduct.setDescription(product.getDescription());
@@ -86,7 +86,7 @@ public class SelfProductService implements DbProductService{
 
 
     @Override
-    public GenericDbProductDto updateProductById(UUID id, GenericDbProductDto updatedProduct) {
+    public DbProductDto updateProductById(UUID id, DbProductDto updatedProduct) {
         Optional<Product> dbProduct = productRepository.findById(id);
         Product productToUpdate = dbProduct.get();
 
@@ -95,6 +95,6 @@ public class SelfProductService implements DbProductService{
         productToUpdate.setImage(updatedProduct.getImage());
         productRepository.save(productToUpdate);
 
-        return convertProductToGenericDbProductDto(productToUpdate);
+        return convertProductToDbProductDto(productToUpdate);
     }
 }

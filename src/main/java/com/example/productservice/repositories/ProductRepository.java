@@ -27,7 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     List<Product> findAllByTitle(String title);
 
 
-    // ------------------------------ SelfProductService Methods below ------------------------------
+    // ------------------------------ SelfDbProductService Methods below ------------------------------
     @Override
     Optional<Product> findById(UUID uuid);
 
