@@ -26,7 +26,7 @@ public class SelfDbProductService implements DbProductService{
     }
 
     // Helper Method
-    private DbProductDto convertProductToDbProductDto(Product product) {
+    public DbProductDto convertProductToDbProductDto(Product product) {
         DbProductDto genericProductDto = new DbProductDto();
         genericProductDto.setTitle(product.getTitle());
         genericProductDto.setDescription(product.getDescription());
