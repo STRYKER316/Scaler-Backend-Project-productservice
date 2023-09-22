@@ -9,12 +9,14 @@ import com.example.productservice.repositories.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootApplication
-public class ProductserviceApplication { //implements CommandLineRunner {
+public class ProductserviceApplication { // implements CommandLineRunner {
 
 //	private final CategoryRepository categoryRepository;
 //	private final ProductRepository productRepository;
@@ -33,6 +35,7 @@ public class ProductserviceApplication { //implements CommandLineRunner {
 	}
 
 //	@Override
+//	@Transactional
 //	public void run(String... args) throws Exception {
 //		Category category = new Category();
 //		category.setName("Apple Phone");
@@ -57,21 +60,32 @@ public class ProductserviceApplication { //implements CommandLineRunner {
 //
 ////		JPA query check
 //		List<Product> products = productRepository.findAllByPrice_Currency("Rupee");
-//		for (Product product : products) {
-//			System.out.println(product.getTitle().getClass().getName());
-//			System.out.println(product.getDescription().getClass().getName());
-//			System.out.println(product.getImage().getClass().getName());
-//			System.out.println(product.getCategory().getClass().getName());
-//			System.out.println(product.getPrice().getClass().getName());
+//		for (Product product1 : products) {
+//			System.out.println(product1.getTitle().getClass().getName());
+//			System.out.println(product1.getDescription().getClass().getName());
+//			System.out.println(product1.getImage().getClass().getName());
+//			System.out.println(product1.getCategory().getClass().getName());
+//			System.out.println(product1.getPrice().getClass().getName());
 //		}
 //
 //
 //		System.out.println(productRepository.countAllByPrice_Currency("Rupee"));
 //
-//		List<Product> products1 = productRepository.findAllByTitle("I-phone 15");
+//		List<Product> products2 = productRepository.findAllByTitle("I-phone 15");
 //
 //
-//		Category category1 = categoryRepository.findById(UUID.fromString("bdcbb858-70e7-4c17-9414-d03233aa6944")).get();
+//		Category category1 = categoryRepository.findById(UUID.fromString("b6e3cbdd-fecc-40e4-b55b-200e2718edd6")).get();
 //		System.out.println("Category name is: " + category1.getName());
+//
+//
+//		// -------------------- Lazy fetch Check --------------------
+//		System.out.println("Fetching category products of category b6e3cbdd-fecc-40e4-b55b-200e2718edd6");
+//		Thread.sleep(1000);
+//		Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString("b6e3cbdd-fecc-40e4-b55b-200e2718edd6"));
+//		Category category2 = categoryOptional.get();
+//
+//		System.out.println("Fetching products for category: ");
+//		Thread.sleep(1000);
+//		category2.getProducts();
 //	}
 }
