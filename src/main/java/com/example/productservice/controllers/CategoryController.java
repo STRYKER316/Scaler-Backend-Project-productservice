@@ -1,14 +1,12 @@
 package com.example.productservice.controllers;
 
 import com.example.productservice.dtos.DbProductDto;
+import com.example.productservice.dtos.ProductTitleRequestDto;
 import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
 import com.example.productservice.services.CategoryService;
 import com.example.productservice.services.SelfDbProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +34,12 @@ public class CategoryController {
             dbProductDtos.add(dbProductDto);
         }
         return dbProductDtos;
+    }
+
+    @GetMapping("/productTitles")
+    public List<String> getProductTitles(@RequestBody ProductTitleRequestDto productTitleRequestDto) {
+        List<String> uuids = productTitleRequestDto.getUuids();
+
+        return categoryService.getProductTitles(uuids);
     }
 }
