@@ -5,6 +5,7 @@ import com.example.productservice.models.Category;
 import java.util.List;
 
 public interface CategoryService {
-    public Category getCategory(String uuid);
+    public List<String> getCategories();
+    public Category getCategoryById(String uuid);
     public List<String> getProductTitles(List<String> categoryUUUIDs);
 }

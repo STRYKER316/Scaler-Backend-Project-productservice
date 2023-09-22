@@ -1,6 +1,8 @@
 package com.example.productservice.repositories;
 
+import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,7 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     List<Product> findAllByPrice_Currency(String currency);
 
-
     long countAllByPrice_Currency(String currency);
 
     @Query(value = "select * from Product where title = :title", nativeQuery = true)
@@ -37,5 +38,5 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     @Override
     void deleteById(UUID uuid);
 
-
+    List<Product> findAllByCategoryIn(List<Category> categories);
 }

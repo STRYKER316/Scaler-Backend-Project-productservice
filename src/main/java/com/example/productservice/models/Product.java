@@ -16,7 +16,7 @@ public class Product extends BaseModel {
     private String description;
     private String image;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Price price;
 //    private double price;
 

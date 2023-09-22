@@ -23,9 +23,16 @@ public class CategoryController {
         this.selfDbProductService = selfDbProductService;
     }
 
+
+    @GetMapping()
+    public List<String> getCategories() {
+        return categoryService.getCategories();
+    }
+
+
     @GetMapping("/{uuid}")
     public List<DbProductDto> getCategoryProducts(@PathVariable("uuid") String uuid) {
-        Category category = categoryService.getCategory(uuid);
+        Category category = categoryService.getCategoryById(uuid);
         List<Product> products = category.getProducts();
 
         List<DbProductDto> dbProductDtos = new ArrayList<>();
