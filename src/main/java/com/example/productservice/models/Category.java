@@ -22,8 +22,8 @@ public class Category extends BaseModel {
     }
 
     private String name;
+
     @OneToMany(mappedBy = "category")
-    // SUBSELECT makes sure all categories are fetched in a single DB Query, it solves (N + 1) problem
-    @Fetch(FetchMode.SUBSELECT)
+    @Fetch(FetchMode.SUBSELECT)  // SUBSELECT makes sure all categories are fetched in a single DB Query, it solves (N + 1) problem
     private List<Product> products;
 }

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 @Primary
-@Service("selfProductService")
+@Service("selfDbProductService")
 public class SelfDbProductService implements DbProductService{
 
     private ProductRepository productRepository;

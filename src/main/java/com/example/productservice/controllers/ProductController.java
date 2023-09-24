@@ -14,6 +14,60 @@ import com.example.productservice.exceptions.NotFoundException;
 @RequestMapping("/products")
 public class ProductController {
 
+    //    ------------------------------ DB Repo Implementation ------------------------------
+    private SelfDbProductService selfDbProductService;
+
+    // Constructor
+    public ProductController(SelfDbProductService selfDbProductService) {
+        this.selfDbProductService = selfDbProductService;
+    }
+
+
+    @GetMapping("/{id}")
+    public DbProductDto getProductById(@PathVariable("id") UUID id) throws NotFoundException {
+//        System.out.println("The id is: " + id);
+        return selfDbProductService.getProductById(id);
+    }
+
+
+    @GetMapping
+    public List<DbProductDto> getAllProducts() {
+        return selfDbProductService.getAllProducts();
+    }
+
+
+    @PostMapping
+    public Boolean createProduct(@RequestBody DbProductDto product) {
+         System.out.println(product.getTitle());
+        return selfDbProductService.createProduct(product);
+    }
+
+
+     @DeleteMapping("/{id}")
+     public void deleteProductById(@PathVariable("id") UUID id) {
+         selfDbProductService.deleteProductById(id);
+     }
+
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") long id) {
+//        ResponseEntity<GenericProductDto> response = new ResponseEntity<GenericProductDto>(
+//                selfDbProductService.deleteProductById(id), HttpStatus.OK
+//        );
+//        return response;
+//
+//        // return productService.deleteProductById(id);
+//    }
+
+
+    @PutMapping("/{id}")
+    public DbProductDto updateProductById(@PathVariable("id") UUID id,
+                                          @RequestBody DbProductDto updatedProduct) {
+        return selfDbProductService.updateProductById(id, updatedProduct);
+    }
+
+
+
 ////    ------------------------------ FakeStore Implementation ------------------------------
 //    private ProductService productService;
 //
@@ -66,57 +120,4 @@ public class ProductController {
 //        return productService.updateProductById(id, updatedProduct);
 //    }
 
-
-
-    //    ------------------------------ DB Repo Implementation ------------------------------
-    private SelfDbProductService selfDbProductService;
-
-    // Constructor
-    public ProductController(SelfDbProductService selfDbProductService) {
-        this.selfDbProductService = selfDbProductService;
-    }
-
-
-    @GetMapping("/{id}")
-    public DbProductDto getProductById(@PathVariable("id") UUID id) throws NotFoundException {
-//        System.out.println("The id is: " + id);
-        return selfDbProductService.getProductById(id);
-    }
-
-
-    @GetMapping
-    public List<DbProductDto> getAllProducts() {
-        return selfDbProductService.getAllProducts();
-    }
-
-
-    @PostMapping
-    public Boolean createProduct(@RequestBody DbProductDto product) {
-         System.out.println(product.getTitle());
-        return selfDbProductService.createProduct(product);
-    }
-
-
-     @DeleteMapping("/{id}")
-     public void deleteProductById(@PathVariable("id") UUID id) {
-         selfDbProductService.deleteProductById(id);
-     }
-
-
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") long id) {
-//        ResponseEntity<GenericProductDto> response = new ResponseEntity<GenericProductDto>(
-//                selfDbProductService.deleteProductById(id), HttpStatus.OK
-//        );
-//        return response;
-//
-//        // return productService.deleteProductById(id);
-//    }
-
-
-    @PutMapping("/{id}")
-    public DbProductDto updateProductById(@PathVariable("id") UUID id,
-                                          @RequestBody DbProductDto updatedProduct) {
-        return selfDbProductService.updateProductById(id, updatedProduct);
-    }
 }
