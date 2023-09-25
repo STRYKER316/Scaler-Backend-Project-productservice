@@ -7,7 +7,7 @@ import com.example.productservice.dtos.FakeStoreProductDto;
 import org.springframework.stereotype.Service;
 import com.example.productservice.dtos.GenericFakeStoreProductDto;
 import com.example.productservice.exceptions.NotFoundException;
-import com.example.productservice.thirdPartyClients.productService.FakeStoreProductServiceClient;
+import com.example.productservice.thirdPartyClients.productService.fakeStore.FakeStoreProductServiceClient;
 
 
 @Service("fakeStoreProductService")

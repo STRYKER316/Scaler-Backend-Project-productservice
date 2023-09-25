@@ -1,9 +1,9 @@
-package com.example.productservice.thirdPartyClients.productService;
+package com.example.productservice.thirdPartyClients.productService.fakeStore;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.example.productservice.dtos.FakeStoreProductDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericFakeStoreProductDto;
 import com.example.productservice.exceptions.NotFoundException;
 
